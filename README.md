@@ -6,7 +6,7 @@ Welcome to the repository of my personal blog. The idea is to use this pet proje
 
 ### Steps followed to create this app
 
-0. Assume ruby is installed, otherwise why are we here :D
+0. Assume ruby is installed, otherwise why are we here 😄
 1. Ensure rails is installed `gem install rails`
 2. Ensure recent version of bundler is installed `gem install bundler`
 3. Ensure libpq is installed `brew install libpq` and added to path `export PATH="/opt/homebrew/opt/libpq/bin:$PATH" >> ~/.zshrc`
