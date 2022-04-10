@@ -1,0 +1,83 @@
+AllCops:
+  TargetRubyVersion: 3.0
+  Exclude:
+  - "**/scripts/**/**/**/*"
+  - "vendor/**/*"
+  - "**/tmp/**/*"
+  - "**/db/data/**/*"
+  - "**/db/data_schema.rb"
+  - "**/db/schema.rb"
+  - "**/bin/**/*"
+  - "**/node_modules/**/*"
+  DisplayCopNames: true
+  StyleGuideCopsOnly: false
+  NewCops: enable
+  MaxFilesInCache: 40000
+
+Lint:
+  Exclude:
+  - "**/db/migrate/**/*.rb"
+Layout:
+  Exclude:
+  - "**/db/migrate/**/*.rb"
+Style:
+  Exclude:
+  - "**/db/migrate/**/*.rb"
+Style/Encoding:
+  Enabled: false
+Style/LambdaCall:
+  Enabled: false
+Style/Documentation:
+  Description: Document classes and non-namespace modules.
+  Enabled: false
+Style/KeywordParametersOrder:
+  Enabled: false
+Style/MissingRespondToMissing:
+  Enabled: false
+Style/FormatStringToken:
+  EnforcedStyle: template
+Style/RegexpLiteral:
+  Description: Use %r for regular expressions matching more than `MaxSlashes` '/'
+    characters. Use %r only for regular expressions matching more than `MaxSlashes`
+    '/' character.
+  StyleGuide: https://github.com/bbatsov/ruby-style-guide#percent-r
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - spec/**/**/*
+Lint/UselessAccessModifier:
+  ContextCreatingMethods:
+    - class_methods
+Layout/LineLength:
+  Description: Limit lines to 120 characters.
+  StyleGuide: https://github.com/bbatsov/ruby-style-guide#80-character-limits
+  Enabled: true
+  Max: 120
+  AllowURI: true
+  URISchemes:
+  - http
+  - https
+  Exclude:
+    - "lib/tasks/**/*.rake"
+    - "gems/investor/lib/tasks/**/*.rake"
+    - "db/seeds/**/*.rb"
+    - "**/db/migrate/**/*.rb"
+Layout/EmptyLinesAroundClassBody:
+  Description: Keeps track of empty lines around class bodies.
+  Enabled: true
+  EnforcedStyle: empty_lines
+  SupportedStyles:
+  - empty_lines
+  - no_empty_lines
+Metrics/BlockLength:
+  Max: 315
+  Enabled: true
+  Exclude:
+    - "app/admin/**/*"
+    - "config/initializers/active_template.rb"
+    - "spec/**/*"
+    - "gems/pension_forecast/spec/**/*"
+    - "gems/tos/spec/**/*"
+    - "gems/investor/spec/**/*"
+    - "**/db/migrate/**/*"
