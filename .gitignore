@@ -36,3 +36,6 @@
 # Ignore VIM swap files
 *.swp
 *.swo
+
+# Ignore Mac files
+**/.DS_Store
