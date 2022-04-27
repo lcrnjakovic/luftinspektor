@@ -12,9 +12,13 @@
   </head>
 
   <body>
-    <%= render partial: 'shared/navbar' %>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+    <% if current_page?(root_path) %>
+      <main><%= yield %></main>
+    <% else %>
+      <%= render partial: 'shared/navbar' %>
+      <main class="container mx-auto mt-28 px-5 flex">
+        <%= yield %>
+      </main>
+    <% end %>
   </body>
 </html>

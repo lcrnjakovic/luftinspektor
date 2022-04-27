@@ -50,6 +50,9 @@ gem 'bootsnap', require: false
 # Introduces slim html to the project
 gem 'slim'
 
+# Using fontawesome
+gem 'font-awesome-rails'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

@@ -12,13 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
-/* Color Theme Swatches in Hex */
-/* .crimson1 { color: #8C1F28; } */
-/* .crimson2 { color: #591C21; } */
-/* .green { color: #044040; } */
-/* .red { color: #D92525; } */
-/* .white { color: #F2F2F2; } */
 
 body {
 	font-family: 'Typewriter';

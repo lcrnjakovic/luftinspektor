@@ -1,1 +1,11 @@
-h1 Hello World!
+div.flex.h-screen.items-center.justify-center.bg-cover class=["bg-[url('hero.jpeg')]"]
+  div.w-screen.bg-opacity-25.bg-black.h-screen.items-center.justify-center.flex
+    div.text-center
+      p.italic.max-w-xl
+        span.block.mb-2 "You know,” said Arthur, “it’s at times like this that I really wish I’d listened to what my mother told me when I was young.”
+        span.block.mb-2 “Why, what did she tell you?”
+        span.block “I don’t know, I didn’t listen.”
+        span ~
+      br
+      = link_to about_path, class: 'bg-crimson_light hover:bg-crimson_dark text-white font-bold py-2 px-4 rounded shadow' do
+         = fa_icon 'compass', text: 'Explore', right: true

@@ -6,4 +6,9 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get 'welcome/index'
+
+  get 'about/index'
+
+  match '/about', to: 'about#index', via: 'get'
+  match '/welcome', to: 'welcome#index', via: 'get'
 end

@@ -13,10 +13,17 @@ nav.px-2.sm:px-4 class="py-2.5"
     #mobile-menu.hidden.w-full.md:block.md:w-auto
       ul.flex.flex-col.mt-4.md:flex-row.md:space-x-8.md:mt-0.md:text-sm.md:font-medium
         li
-          a.block.py-2.pr-4.pl-3.hover:text-red.active:text-crimson_dark href="#" Tech
+          a.block.py-2.pr-4.pl-3.hover:text-red.active:text-crimson_dark href="/posts"
+            = fa_icon 'code', text: 'Tech'
         li
-          a.block.py-2.pr-4.pl-3.hover:text-red.active:text-crimson_dark href="#" Music
+          a.block.py-2.pr-4.pl-3.hover:text-red.active:text-crimson_dark href="/music"
+            = fa_icon 'music', text: 'Music'
         li
-          a.block.py-2.pr-4.pl-3.hover:text-red.active:text-crimson_dark href="#" Chess
+          a.block.py-2.pr-4.pl-3.hover:text-red.active:text-crimson_dark href="/books"
+            = fa_icon 'book', text: 'Books'
         li
-          a.block.py-2.pr-4.pl-3.hover:text-red.active:text-crimson_dark href="#" About
+          a.block.py-2.pr-4.pl-3.hover:text-red.active:text-crimson_dark href="/chess"
+            = fa_icon 'puzzle-piece', text: 'Chess'
+        li
+          a.block.py-2.pr-4.pl-3.hover:text-red.active:text-crimson_dark href="/about"
+            = fa_icon 'info', text: 'About'
