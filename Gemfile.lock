@@ -1,0 +1,29 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    coderay (1.1.3)
+    erubis (2.7.0)
+    method_source (1.0.0)
+    pg (1.4.4)
+    pry (0.14.1)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    rack (3.0.0)
+    roda (3.62.0)
+      rack
+    sequel (5.62.0)
+    tilt (2.0.11)
+
+PLATFORMS
+  arm64-darwin-21
+
+DEPENDENCIES
+  erubis
+  pg
+  pry
+  roda
+  sequel
+  tilt
+
+BUNDLED WITH
+   2.3.11
