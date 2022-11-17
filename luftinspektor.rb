@@ -1,11 +1,13 @@
 require 'roda'
 
 class Luftinspektor < Roda
-  plugin :static, ["/images", "/css", "/js"]
+  plugin :public
   plugin :render
   plugin :head
 
   route do |r|
+    r.public
+
     r.root do
       view('home')
     end
