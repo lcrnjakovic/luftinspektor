@@ -11,6 +11,10 @@ class Luftinspektor < Roda
     r.root do
       view('home')
     end
+
+    r.get 'about' do
+      view('about')
+    end
   end
 end
 
