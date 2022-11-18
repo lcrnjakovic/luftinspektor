@@ -1,5 +1,6 @@
 require 'roda'
 require 'sequel'
+require 'kramdown'
 require 'pry'
 
 database = "luftinspektor_development"
@@ -25,6 +26,20 @@ class Luftinspektor < Roda
 
     r.get 'about' do
       view('about')
+    end
+
+    r.on 'posts' do
+      r.is do
+        r.get do
+          @posts = Post.all
+          view('posts/index')
+        end
+      end
+
+      r.get String do |slug|
+        @post = Post.find(slug: slug)
+        view('posts/show')
+      end
     end
   end
 end

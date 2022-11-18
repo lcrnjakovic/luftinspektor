@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'erubis'
+gem 'kramdown'
 gem 'pg'
 gem 'roda'
 gem 'sequel'
