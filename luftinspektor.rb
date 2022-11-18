@@ -16,6 +16,9 @@ class Luftinspektor < Roda
   plugin :public
   plugin :render
   plugin :head
+  plugin :not_found do
+    render('not_found')
+  end
 
   route do |r|
     r.public
@@ -38,6 +41,8 @@ class Luftinspektor < Roda
 
       r.get String do |slug|
         @post = Post.find(slug: slug)
+        return render('not_found') unless @post
+
         view('posts/show')
       end
     end
