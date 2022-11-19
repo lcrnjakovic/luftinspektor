@@ -34,8 +34,8 @@ class Luftinspektor < Roda
     r.on 'posts' do
       r.is do
         r.get do
-          @posts = Post.all
-          view('posts/index')
+          recent_slug = Post.order(:created_at).first.slug
+          r.redirect "/posts/#{recent_slug}"
         end
       end
 
@@ -43,6 +43,7 @@ class Luftinspektor < Roda
         @post = Post.find(slug: slug)
         return render('not_found') unless @post
 
+        @all_posts = Post.order(:created_at).all
         view('posts/show')
       end
     end

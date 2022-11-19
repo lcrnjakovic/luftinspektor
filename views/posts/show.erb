@@ -1,2 +1,31 @@
-<h1><%= @post.title %></h1>
-<%= Kramdown::Document.new(@post.content).to_html %>
+<div class="ms-3 container">
+  <div class="row">
+    <div class="col-10">
+      <a class="text-decoration-none" href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+        <i class="bi bi-arrow-bar-left me-1"></i>See all
+      </a>
+      <h1 class="lead font-monospace mt-4"><%= @post.title %></h1>
+      <p class="font-monospace text-muted"><%= @post.created_at.strftime('%B %d, %Y') %></p>
+      <%= Kramdown::Document.new(@post.content).to_html %>
+    </div>
+    <div class="col-2">
+      <h1 class="lead font-monospace">On this page</h3>
+    </div>
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title font-monospace" id="offcanvasWithBothOptionsLabel">All posts</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="list-group list-group-flush">
+      <% @all_posts.each do |post| %>
+        <li class="list-group-item">
+          <a class="text-decoration-none" href="/posts/<%= post.slug %>"><%= post.title %></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
