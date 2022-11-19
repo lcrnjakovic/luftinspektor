@@ -4,6 +4,7 @@
       <a class="text-decoration-none" href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
         <i class="bi bi-arrow-bar-left me-1"></i>More posts
       </a>
+      <img src="/images/roda.jpeg" class="img-fluid my-3" alt="roda.jpeg" width="1920" height="400">
       <h1 class="lead font-monospace mt-4"><%= @post.title %></h1>
       <p class="font-monospace text-muted"><%= @post.created_at.strftime('%B %d, %Y') %></p>
       <%= Kramdown::Document.new(@post.content).to_html %>
