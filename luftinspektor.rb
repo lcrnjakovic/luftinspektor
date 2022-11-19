@@ -8,6 +8,7 @@ user     = 'lukacrnjakovic'
 password = ''
 DB = Sequel.connect(adapter: 'postgres', database: database, host: '127.0.0.1', user: user, password: password)
 
+Sequel::Model.plugin :validation_helpers
 Sequel::Model.plugin :timestamps, update_on_create: true
 
 require_relative 'models/post'
@@ -32,9 +33,25 @@ class Luftinspektor < Roda
     end
 
     r.on 'posts' do
+      r.get 'new' do
+        @post = Post.new
+        view("posts/new")
+      end
+
+      r.post do
+        @post = Post.new(r['post'])
+        @post.slug = @post.title.downcase.gsub!(' ', '_')
+
+        if @post.valid? && @post.save
+          r.redirect "/"
+        else
+          view("posts/new")
+        end
+      end
+
       r.is do
         r.get do
-          recent_slug = Post.order(:created_at).first.slug
+          recent_slug = Post.last.slug
           r.redirect "/posts/#{recent_slug}"
         end
       end
@@ -43,7 +60,7 @@ class Luftinspektor < Roda
         @post = Post.find(slug: slug)
         return render('not_found') unless @post
 
-        @all_posts = Post.order(:created_at).all
+        @all_posts = Post.reverse_order(:created_at).all
         view('posts/show')
       end
     end

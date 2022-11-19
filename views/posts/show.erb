@@ -2,21 +2,21 @@
   <div class="row">
     <div class="col-10">
       <a class="text-decoration-none" href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-        <i class="bi bi-arrow-bar-left me-1"></i>See all
+        <i class="bi bi-arrow-bar-left me-1"></i>More posts
       </a>
       <h1 class="lead font-monospace mt-4"><%= @post.title %></h1>
       <p class="font-monospace text-muted"><%= @post.created_at.strftime('%B %d, %Y') %></p>
       <%= Kramdown::Document.new(@post.content).to_html %>
     </div>
     <div class="col-2">
-      <h1 class="lead font-monospace">On this page</h3>
+      <h1 class="lead font-monospace">Reading time, reactions and stuff</h3>
     </div>
   </div>
 </div>
 
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title font-monospace" id="offcanvasWithBothOptionsLabel">All posts</h5>
+    <h5 class="offcanvas-title font-monospace ms-3" id="offcanvasWithBothOptionsLabel">All posts</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
