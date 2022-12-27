@@ -9,8 +9,14 @@
       <p class="font-monospace text-muted"><%= @post.created_at.strftime('%B %d, %Y') %></p>
       <%= Kramdown::Document.new(@post.content).to_html %>
     </div>
-    <div class="col-2">
-      <h1 class="lead font-monospace">Reading time, reactions and stuff</h3>
+    <div class="col-2 my-3">
+      <% @post.post_reactions.sort_by(&:id).each do |post_reaction| %>
+        <a href="/post_reactions?id=<%= post_reaction.id %>" class="text-decoration-none mx-1">
+          <button type="button" class="btn btn<%= @cookies["reaction_#{post_reaction.id}"] ? '' : '-outline' %>-dark rounded">
+            <%= post_reaction.count %><i class="ms-1 bi bi-<%= post_reaction.reaction.slug %>-fill"></i>
+          </button>
+        </a>
+      <% end %>
     </div>
   </div>
 </div>

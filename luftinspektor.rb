@@ -12,6 +12,8 @@ Sequel::Model.plugin :validation_helpers
 Sequel::Model.plugin :timestamps, update_on_create: true
 
 require_relative 'models/post'
+require_relative 'models/reaction'
+require_relative 'models/post_reaction'
 
 class Luftinspektor < Roda
   plugin :public
@@ -20,6 +22,7 @@ class Luftinspektor < Roda
   plugin :not_found do
     render('not_found')
   end
+  plugin :cookies
 
   route do |r|
     r.public
@@ -30,6 +33,21 @@ class Luftinspektor < Roda
 
     r.get 'about' do
       view('about')
+    end
+
+    r.get 'post_reactions' do
+      post_reaction = PostReaction.find(id: r[:id])
+      old_count = post_reaction.count
+      if !r.cookies["reaction_#{post_reaction.id}"]
+        new_count = old_count + 1
+        post_reaction.update(count: new_count)
+        response.set_cookie("reaction_#{post_reaction.id}", true)
+      else
+        new_count = old_count - 1
+        post_reaction.update(count: new_count)
+        response.delete_cookie("reaction_#{post_reaction.id}")
+      end
+      r.redirect "/posts/#{post_reaction.post.slug}"
     end
 
     r.on 'posts' do
@@ -58,6 +76,7 @@ class Luftinspektor < Roda
 
       r.get String do |slug|
         @post = Post.find(slug: slug)
+        @cookies = r.cookies
         return render('not_found') unless @post
 
         @all_posts = Post.reverse_order(:created_at).all
