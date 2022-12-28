@@ -1,4 +1,4 @@
-<div class="ms-3 container">
+<div class="mx-3">
   <div class="row">
     <div class="col-10">
       <a class="text-decoration-none" href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
@@ -10,13 +10,18 @@
       <%= Kramdown::Document.new(@post.content).to_html %>
     </div>
     <div class="col-2 my-3">
-      <% @post.post_reactions.sort_by(&:id).each do |post_reaction| %>
-        <a href="/post_reactions?id=<%= post_reaction.id %>" class="text-decoration-none mx-1">
-          <button type="button" class="btn btn<%= @cookies["reaction_#{post_reaction.id}"] ? '' : '-outline' %>-dark rounded">
-            <%= post_reaction.count %><i class="ms-1 bi bi-<%= post_reaction.reaction.slug %>-fill"></i>
-          </button>
-        </a>
-      <% end %>
+      <div class="sticky-top" style="top: 1em">
+        <p class="font-monospace text-muted mx-1">
+        <i class="bi bi-stopwatch me-2"></i><%= @post.reading_time %>
+        </p>
+        <% @post.post_reactions.sort_by(&:id).each do |post_reaction| %>
+          <a href="/post_reactions?id=<%= post_reaction.id %>" class="text-decoration-none mx-1">
+            <button type="button" class="btn btn<%= @cookies["reaction_#{post_reaction.id}"] ? '' : '-outline' %>-dark rounded my-1 my-lg-0">
+              <%= post_reaction.count %><i class="ms-1 bi bi-<%= post_reaction.reaction.slug %>-fill"></i>
+            </button>
+          </a>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
