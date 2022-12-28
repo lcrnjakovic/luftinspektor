@@ -109,6 +109,10 @@ class Luftinspektor < Roda
         end
       end
     end
+
+    r.get('chess') do
+      view('chess')
+    end
   end
 end
 

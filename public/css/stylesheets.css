@@ -1,3 +1,7 @@
 a {
 	color: inherit;
 }
+
+a:hover {
+	color: #f3904f;
+}
