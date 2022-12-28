@@ -15,6 +15,7 @@ Sequel::Model.plugin :timestamps, update_on_create: true
 require_relative 'models/post'
 require_relative 'models/reaction'
 require_relative 'models/post_reaction'
+require_relative 'models/book'
 
 class Luftinspektor < Roda
   plugin :public
@@ -82,6 +83,30 @@ class Luftinspektor < Roda
 
         @all_posts = Post.reverse_order(:created_at).all
         view('posts/show')
+      end
+    end
+
+    r.on 'books' do
+      r.get 'new' do
+        @book = Book.new
+        view('books/new')
+      end
+
+      r.post do
+        @book= Book.new(r['book'])
+
+        if @book.valid? && @book.save
+          r.redirect "/"
+        else
+          view("books/new")
+        end
+      end
+
+      r.is do
+        r.get do
+          @books = Book.order(:author)
+          view('books/index')
+        end
       end
     end
   end

@@ -1,0 +1,50 @@
+<h1>New Book Entry</h1>
+
+<form action="/books" method="post" role="form">
+  <div class="form-group">
+    <label class="control-label" for="book_title">Title</label>
+    <input class="form-control" id="book_title" name="book[title]" value="<%= @book.title %>" required="required" type="text"/>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="book_author">Author</label>
+    <input class="form-control" id="book_author" name="book[author]" value="<%= @book.author %>" required="required" type="text"/>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="book_status">Status</label>
+    <select class="form-select" id="book_status" name="book[status]" value=<%= @book.status %> aria-label="Status" required="required">
+      <% Book::STATUSES.each do |k,v| %>
+        <option value=<%= k %>><%= v %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="book_type">Type</label>
+    <select class="form-select" id="book_type" name="book[type]" value=<%= @book.type %> aria-label="Type" required="required">
+      <% Book::TYPES.each do |k,v| %>
+        <option value=<%= k %>><%= v %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="book_year_read">Year Read</label>
+    <input class="form-control" id="book_year_read" name="book[year_read]" value="<%= @book.year_read %>" type="number"/>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="book_rating">Rating</label>
+    <select class="form-select" id="book_rating" name="book[rating]" value=<%= @book.rating %> aria-label="Rating">
+      <option value=""></option>
+      <option value=1>⭐</option>
+      <option value=2>⭐⭐</option>
+      <option value=3>⭐⭐⭐</option>
+      <option value=4>⭐⭐⭐⭐</option>
+      <option value=5>⭐⭐⭐⭐⭐</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="book_quote">Quote</label>
+    <input class="form-control" id="book_quote" name="book[quote]" value="<%= @book.quote %>" required="required" type="text"/>
+  </div>
+  <div class="form-group">
+    <input class="btn btn-success" type="submit" value="Create a Book entry"/>
+  </div>
+</form>
