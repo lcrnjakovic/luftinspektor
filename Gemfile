@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'activesupport'
 gem 'erubis'
 gem 'kramdown'
 gem 'pg'

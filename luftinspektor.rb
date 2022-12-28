@@ -1,5 +1,6 @@
 require 'roda'
 require 'sequel'
+require 'active_support/core_ext/string'
 require 'kramdown'
 require 'pry'
 
@@ -58,7 +59,7 @@ class Luftinspektor < Roda
 
       r.post do
         @post = Post.new(r['post'])
-        @post.slug = @post.title.downcase.gsub!(' ', '_')
+        @post.slug = @post.title.delete("'").parameterize.underscore
 
         if @post.valid? && @post.save
           r.redirect "/"
