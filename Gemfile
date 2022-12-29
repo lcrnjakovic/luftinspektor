@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'activesupport'
+gem 'bcrypt'
 gem 'erubis'
 gem 'kramdown'
 gem 'pg'

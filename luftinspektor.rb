@@ -3,6 +3,7 @@ require 'sequel'
 require 'active_support/core_ext/string'
 require 'kramdown'
 require 'pry'
+require 'bcrypt'
 
 database = "luftinspektor_development"
 user     = 'lukacrnjakovic'
@@ -16,6 +17,7 @@ require_relative 'models/post'
 require_relative 'models/reaction'
 require_relative 'models/post_reaction'
 require_relative 'models/book'
+require_relative 'models/admin_pass'
 
 class Luftinspektor < Roda
   plugin :public
@@ -54,15 +56,19 @@ class Luftinspektor < Roda
 
     r.on 'posts' do
       r.get 'new' do
-        @post = Post.new
-        view("posts/new")
+        if BCrypt::Password.new(AdminPass.take) == r[:pass]
+          @post = Post.new
+          view("posts/new")
+        else
+          render('not_found')
+        end
       end
 
       r.post do
         @post = Post.new(r['post'])
         @post.slug = @post.title.delete("'").parameterize.underscore
 
-        if @post.valid? && @post.save
+        if @post.valid? && BCrypt::Password.new(AdminPass.take) == r['pass'] && @post.save
           r.redirect "/"
         else
           view("posts/new")
@@ -88,14 +94,18 @@ class Luftinspektor < Roda
 
     r.on 'books' do
       r.get 'new' do
-        @book = Book.new
-        view('books/new')
+        if BCrypt::Password.new(AdminPass.take) == r[:pass]
+          @book = Book.new
+          view('books/new')
+        else
+          render('not_found')
+        end
       end
 
       r.post do
         @book= Book.new(r['book'])
 
-        if @book.valid? && @book.save
+        if @book.valid? && BCrypt::Password.new(AdminPass.take) == r['pass'] && @book.save
           r.redirect "/"
         else
           view("books/new")
