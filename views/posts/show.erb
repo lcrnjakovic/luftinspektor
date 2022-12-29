@@ -26,15 +26,15 @@
   </div>
 </div>
 
-<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+<div class="offcanvas offcanvas-start bg-dark bg-gradient" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
   <div class="offcanvas-header">
-    <p class="offcanvas-title font-monospace ms-3" id="offcanvasWithBothOptionsLabel">But wait, there's more!</p>
+    <p class="offcanvas-title font-monospace ms-3" id="offcanvasWithBothOptionsLabel"></p>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
-    <ul class="list-group list-group-flush">
+    <ul class="list-group list-group-flush bg-transparent">
       <% @all_posts.each do |post| %>
-        <li class="list-group-item">
+        <li class="list-group-item bg-transparent text-white">
           <a class="text-decoration-none" href="/posts/<%= post.slug %>"><%= post.title %></a>
         </li>
       <% end %>
