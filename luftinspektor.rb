@@ -18,6 +18,7 @@ require_relative 'models/reaction'
 require_relative 'models/post_reaction'
 require_relative 'models/book'
 require_relative 'models/admin_pass'
+require_relative 'models/album'
 
 class Luftinspektor < Roda
   plugin :public
@@ -120,8 +121,35 @@ class Luftinspektor < Roda
       end
     end
 
-    r.get('chess') do
+    r.get 'chess'  do
       view('chess')
+    end
+
+    r.on 'music' do
+      r.get 'new' do
+        if BCrypt::Password.new(AdminPass.take) == r[:pass]
+          @album = Album.new
+          view('music/new')
+        else
+          render('not_found')
+        end
+      end
+
+      r.post do
+        @album = Album.new(r['album'])
+
+        if @album.valid? && BCrypt::Password.new(AdminPass.take) == r['pass'] && @album.save
+          r.redirect "/"
+        else
+          view("music/new")
+        end
+      end
+
+      r.is do
+        @top_albums = Album.where(top_five: true).all
+        @owned_albums = Album.where(owned: true).all
+        view('music/index')
+      end
     end
   end
 end

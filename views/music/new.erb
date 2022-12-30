@@ -1,0 +1,39 @@
+<h1>New Album Entry</h1>
+
+<form action="/music" method="post" role="form">
+  <div class="form-group">
+    <label class="control-label" for="album_title">Title</label>
+    <input class="form-control" id="album_title" name="album[title]" value="<%= @album.title %>" required="required" type="text"/>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="album_artist">Artist</label>
+    <input class="form-control" id="album_artist" name="album[artist]" value="<%= @album.artist%>" required="required" type="text"/>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="album_year">Year Released</label>
+    <input class="form-control" id="album_year" name="album[year]" value="<%= @album.year %>" type="number"/>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="album_genre">Genre</label>
+    <input class="form-control" id="album_genre" name="album[genre]" value="<%= @album.genre%>" required="required" type="text"/>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="album_cover">Cover Img</label>
+    <input class="form-control" id="album_cover" name="album[cover]" value="<%= @album.cover%>" required="required" type="text"/>
+  </div>
+  <div class="form-group form-check form-switch">
+    <input class="form-control form-check-input" type="checkbox" id="album_top_five" name="album[top_five]" value="true">
+    <label class="form-check-label" for="album_top_five">Top five of the year?</label>
+  </div>
+  <div class="form-group form-check form-switch">
+    <input class="form-control form-check-input" type="checkbox" id="album_owned" name="album[owned]" value="true">
+    <label class="form-check-label" for="album_owned">Owned?</label>
+  </div>
+  <div class="form-group">
+    <label class="control-label" for="pass">Pass</label>
+    <input class="form-control" id="pass" name="pass" value="" required="required" type="text"/>
+  </div>
+  <div class="form-group">
+    <input class="btn btn-success" type="submit" value="Create an Album entry"/>
+  </div>
+</form>
