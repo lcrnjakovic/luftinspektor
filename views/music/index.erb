@@ -1,5 +1,5 @@
 <div id="carouselExampleCaptions" class="carousel slide pt-3" style="margin: auto; width: 400px" data-bs-ride="carousel">
-  <h5 class="font-monospace text-center mb-3"><i class="bi bi-trophy text-warning me-3"></i>My Favorites in 2022<i class="bi bi-trophy text-warning ms-3"></i></h5>
+  <h2 class="font-header text-center mb-3"><i class="bi bi-trophy text-warning me-3"></i>My Favorites in 2022<i class="bi bi-trophy text-warning ms-3"></i></h2>
   <div class="carousel-indicators">
     <% @top_albums.each_with_index do |album, i| %>
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to=<%= i %> class=<%= i.zero? ? 'active' : '' %> aria-current=<%= i.zero? ? 'true' : 'false' %> aria-label=<%= album.title %>></button>

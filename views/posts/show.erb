@@ -5,17 +5,17 @@
         <i class="bi bi-arrow-bar-left me-1"></i>More posts
       </a>
       <img src="/images/roda.jpeg" class="img-fluid my-3 rounded" alt="roda.jpeg" width="1920" height="400">
-      <h1 class="lead font-monospace mt-2"><%= @post.title %></h1>
-      <p class="font-monospace text-white fst-italic"><%= @post.created_at.strftime('%B %d, %Y') %></p>
+      <h1 class="font-header mt-2"><%= @post.title %></h1>
+      <p class="font-header"><%= @post.created_at.strftime('%B %d, %Y') %></p>
       <%= Kramdown::Document.new(@post.content).to_html %>
     </div>
     <div class="col-2 my-3">
       <div class="sticky-top" style="top: 1em">
-        <p class="font-monospace mx-1">
+        <p class="font-header mx-1">
         <i class="bi bi-stopwatch me-2"></i><%= @post.reading_time %>
         </p>
         <% @post.post_reactions.sort_by(&:id).each do |post_reaction| %>
-          <a href="/post_reactions?id=<%= post_reaction.id %>" class="text-decoration-none mx-1">
+          <a href="/post_reactions?id=<%= post_reaction.id %>" class="text-decoration-none mx-1 font-header">
             <button type="button" class="btn btn<%= @cookies["reaction_#{post_reaction.id}"] ? '' : '-outline' %>-light rounded my-1 my-lg-0">
               <%= post_reaction.count %><i class="ms-1 bi bi-<%= post_reaction.reaction.slug %>-fill"></i>
             </button>
@@ -28,7 +28,7 @@
 
 <div class="offcanvas offcanvas-start bg-dark bg-gradient" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
   <div class="offcanvas-header">
-    <p class="offcanvas-title font-monospace ms-3" id="offcanvasWithBothOptionsLabel"></p>
+    <p class="offcanvas-title font-header ms-3" id="offcanvasWithBothOptionsLabel"></p>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
